@@ -1,0 +1,73 @@
+.custom-header {
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.custom-header .brand {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.custom-header .brand i {
+  font-size: 1.5rem;
+}
+
+.user-info .user-text {
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.logout-btn i {
+  font-size: 1rem;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #e0e0e0;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .custom-header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-info {
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .user-info .user-text {
+    font-size: 0.85rem;
+  }
+
+  .logout-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}

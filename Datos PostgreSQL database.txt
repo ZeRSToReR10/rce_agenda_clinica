@@ -1,0 +1,191 @@
+Datos PostgreSQL:
+database: "rce_database"
+CREATE USER rce_admin WITH ENCRYPTED PASSWORD 'LaMc2019';
+GRANT ALL PRIVILEGES ON DATABASE rce_database_new TO rce_admin;
+
+psql -U rce_admin -d rce_database_new -h localhost -W
+
+
+esquema JSON de la base de datos:
+{
+  "database": "rce_database_new",
+  "tables": {
+    "usuarios": {
+      "description": "Médicos y personal del sistema",
+      "columns": [
+        {"name": "id", "type": "SERIAL", "primary_key": true, "nullable": false},
+        {"name": "rut", "type": "VARCHAR(20)", "unique": true, "nullable": false},
+        {"name": "nombre", "type": "VARCHAR(100)", "nullable": false},
+        {"name": "apellido", "type": "VARCHAR(100)", "nullable": false},
+        {"name": "contraseña_hash", "type": "VARCHAR(255)", "nullable": false},
+        {"name": "rol", "type": "VARCHAR(50)", "nullable": false},
+        {"name": "especialidad", "type": "VARCHAR(100)", "nullable": true},
+        {"name": "activo", "type": "BOOLEAN", "default": true},
+        {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"},
+        {"name": "updated_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+      ],
+      "indexes": [
+        "idx_usuarios_rut",
+        "idx_usuarios_rol"
+      ]
+    },
+    "centros_salud": {
+      "description": "Centros médicos disponibles",
+      "columns": [
+        {"name": "id", "type": "SERIAL", "primary_key": true, "nullable": false},
+        {"name": "nombre", "type": "VARCHAR(200)", "nullable": false},
+        {"name": "direccion", "type": "TEXT", "nullable": true},
+        {"name": "telefono", "type": "VARCHAR(20)", "nullable": true},
+        {"name": "activo", "type": "BOOLEAN", "default": true},
+        {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+      ]
+    },
+    "pacientes": {
+      "description": "Pacientes del sistema",
+      "columns": [
+        {"name": "id", "type": "SERIAL", "primary_key": true, "nullable": false},
+        {"name": "rut", "type": "VARCHAR(20)", "unique": true, "nullable": false},
+        {"name": "nombre", "type": "VARCHAR(100)", "nullable": false},
+        {"name": "apellido", "type": "VARCHAR(100)", "nullable": false},
+        {"name": "telefono", "type": "VARCHAR(20)", "nullable": true},
+        {"name": "edad", "type": "INTEGER", "nullable": true},
+        {"name": "genero", "type": "VARCHAR(1)", "nullable": true},
+        {"name": "direccion", "type": "TEXT", "nullable": true},
+        {"name": "fecha_nacimiento", "type": "DATE", "nullable": true},
+        {"name": "email", "type": "VARCHAR(150)", "nullable": true},
+        {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"},
+        {"name": "updated_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+      ],
+      "indexes": [
+        "idx_pacientes_rut",
+        "idx_pacientes_apellido"
+      ]
+    },
+    "agendas": {
+      "description": "Horas médicas agendadas",
+      "columns": [
+        {"name": "id", "type": "SERIAL", "primary_key": true, "nullable": false},
+        {"name": "paciente_id", "type": "INTEGER", "foreign_key": "pacientes(id)", "nullable": false},
+        {"name": "usuario_id", "type": "INTEGER", "foreign_key": "usuarios(id)", "nullable": false},
+        {"name": "centro_salud_id", "type": "INTEGER", "foreign_key": "centros_salud(id)", "nullable": false},
+        {"name": "fecha", "type": "DATE", "nullable": false},
+        {"name": "hora", "type": "TIME", "nullable": false},
+        {"name": "estado", "type": "VARCHAR(50)", "default": "agendada"},
+        {"name": "tipo_consulta", "type": "VARCHAR(50)", "default": "consulta"},
+        {"name": "n_ficha", "type": "VARCHAR(50)", "nullable": true},
+        {"name": "n_carpeta", "type": "VARCHAR(50)", "nullable": true},
+        {"name": "consulta_id", "type": "INTEGER", "foreign_key": "consultas(id)", "nullable": true},
+        {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"},
+        {"name": "updated_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+      ],
+      "indexes": [
+        "idx_agendas_fecha_hora",
+        "idx_agendas_usuario_fecha",
+        "idx_agendas_centro_fecha"
+      ]
+    },
+    "consultas": {
+      "description": "Registros clínicos completos de las consultas",
+      "columns": [
+        {"name": "id", "type": "SERIAL", "primary_key": true, "nullable": false},
+        {"name": "agenda_id", "type": "INTEGER", "foreign_key": "agendas(id)", "nullable": false},
+        {"name": "paciente_id", "type": "INTEGER", "foreign_key": "pacientes(id)", "nullable": false},
+        {"name": "usuario_id", "type": "INTEGER", "foreign_key": "usuarios(id)", "nullable": false},
+        {"name": "centro_salud_id", "type": "INTEGER", "foreign_key": "centros_salud(id)", "nullable": false},
+        {"name": "fecha_consulta", "type": "DATE", "nullable": false},
+        {"name": "hora_consulta", "type": "TIME", "nullable": false},
+        {"name": "estado_hora", "type": "VARCHAR(50)", "default": "Asignada"},
+        {"name": "estado_atencion", "type": "VARCHAR(50)", "default": "en espera"},
+        {"name": "modalidad_atencion", "type": "VARCHAR(50)", "default": "presencial"},
+        {"name": "actividad", "type": "VARCHAR(50)", "default": "consulta"},
+        {"name": "tipo_alta", "type": "VARCHAR(50)", "default": "alta"},
+        {"name": "diagnostico", "type": "TEXT", "nullable": true},
+        {"name": "observaciones", "type": "TEXT", "nullable": true},
+        {"name": "ges", "type": "BOOLEAN", "default": false},
+        {"name": "ingreso_diag", "type": "BOOLEAN", "default": false},
+        {"name": "control_tto", "type": "BOOLEAN", "default": false},
+        {"name": "egreso", "type": "BOOLEAN", "default": false},
+        {"name": "pscv", "type": "BOOLEAN", "default": false},
+        {"name": "morbilidad", "type": "BOOLEAN", "default": false},
+        {"name": "psm", "type": "BOOLEAN", "default": false},
+        {"name": "cns", "type": "BOOLEAN", "default": false},
+        {"name": "lmp_lme", "type": "BOOLEAN", "default": false},
+        {"name": "consejeria_lm", "type": "BOOLEAN", "default": false},
+        {"name": "embarazada", "type": "BOOLEAN", "default": false},
+        {"name": "visita_domic", "type": "BOOLEAN", "default": false},
+        {"name": "dep_severa", "type": "BOOLEAN", "default": false},
+        {"name": "remoto", "type": "BOOLEAN", "default": false},
+        {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"},
+        {"name": "updated_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+      ],
+      "indexes": [
+        "idx_consultas_paciente_id",
+        "idx_consultas_usuario_id",
+        "idx_consultas_fecha",
+        "idx_consultas_centro_salud"
+      ]
+    },
+    "sesiones_trabajo": {
+      "description": "Registro de centros donde trabaja cada profesional por día",
+      "columns": [
+        {"name": "id", "type": "SERIAL", "primary_key": true, "nullable": false},
+        {"name": "usuario_id", "type": "INTEGER", "foreign_key": "usuarios(id)", "nullable": false},
+        {"name": "centro_salud_id", "type": "INTEGER", "foreign_key": "centros_salud(id)", "nullable": false},
+        {"name": "fecha", "type": "DATE", "nullable": false},
+        {"name": "hora_inicio", "type": "TIME", "default": "CURRENT_TIME"},
+        {"name": "hora_fin", "type": "TIME", "nullable": true},
+        {"name": "activa", "type": "BOOLEAN", "default": true},
+        {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+      ]
+    },
+    "usuarios_centros": {
+      "description": "Relación muchos a muchos entre usuarios y centros de salud",
+      "columns": [
+        {"name": "id", "type": "SERIAL", "primary_key": true, "nullable": false},
+        {"name": "usuario_id", "type": "INTEGER", "foreign_key": "usuarios(id)", "nullable": false},
+        {"name": "centro_salud_id", "type": "INTEGER", "foreign_key": "centros_salud(id)", "nullable": false},
+        {"name": "activo", "type": "BOOLEAN", "default": true},
+        {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+      ],
+      "unique_constraints": ["usuario_id, centro_salud_id"]
+    },
+    "especialidades": {
+      "description": "Catálogo de especialidades médicas",
+      "columns": [
+        {"name": "id", "type": "SERIAL", "primary_key": true, "nullable": false},
+        {"name": "nombre", "type": "VARCHAR(100)", "nullable": false},
+        {"name": "descripcion", "type": "TEXT", "nullable": true},
+        {"name": "activo", "type": "BOOLEAN", "default": true},
+        {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+      ]
+    },
+    "diagnosticos": {
+      "description": "Catálogo para autocompletado de diagnósticos",
+      "columns": [
+        {"name": "id", "type": "SERIAL", "primary_key": true, "nullable": false},
+        {"name": "codigo", "type": "VARCHAR(20)", "nullable": true},
+        {"name": "nombre", "type": "VARCHAR(500)", "nullable": false},
+        {"name": "descripcion", "type": "TEXT", "nullable": true},
+        {"name": "activo", "type": "BOOLEAN", "default": true},
+        {"name": "created_at", "type": "TIMESTAMP", "default": "CURRENT_TIMESTAMP"}
+      ]
+    }
+  },
+  "relationships": {
+    "main_flow": [
+      "usuarios → sesiones_trabajo → centros_salud",
+      "agendas → pacientes + usuarios + centros_salud",
+      "consultas → agendas + pacientes + usuarios + centros_salud"
+    ],
+    "many_to_many": [
+      "usuarios_centros: usuarios ⇄ centros_salud"
+    ]
+  },
+  "metadata": {
+    "total_tables": 8,
+    "total_columns": 85,
+    "version": "1.0",
+    "last_updated": "2024-01-15"
+  }
+}
+

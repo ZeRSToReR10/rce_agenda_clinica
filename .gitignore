@@ -1,0 +1,30 @@
+# === Python / Flask ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+instance/
+venv/
+backend/rce_page/  # si es tu entorno virtual
+.env
+.env.*
+*.db
+*.sqlite3
+
+# === Node / React ===
+frontend-consultas-medicas/node_modules/
+frontend-consultas-medicas/build/
+frontend-consultas-medicas/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === IDEs / SO ===
+.vscode/
+.idea/
+.DS_Store
+*.log
+
+# === Otros ===
+*.bak
+*.swp

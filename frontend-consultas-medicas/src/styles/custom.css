@@ -1,0 +1,696 @@
+/* Variables CSS para consistencia */
+:root {
+  --primary-color: #1565c0;
+  --primary-dark: #0d47a1;
+  --primary-light: #42a5f5;
+  --secondary-color: #e53935;
+  --secondary-dark: #b71c1c;
+  --success-color: #2e7d32;
+  --warning-color: #f57c00;
+  --danger-color: #d32f2f;
+  --background-color: #f5f7fa;
+  --surface-color: #ffffff;
+  --text-primary: #212121;
+  --text-secondary: #424242;
+  --text-light: #757575;
+  --border-color: #e0e0e0;
+  --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-medium: 0 8px 15px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos generales mejorados */
+body {
+    margin: 0;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #d0e7ff 0%, #a8d0ff 50%, #ffffff 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+}
+
+/* Contenedor principal con efecto glassmorphism */
+.main-container {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Login moderno con efecto glass */
+.login-container {
+    max-width: 450px;
+    margin: 80px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: var(--shadow-heavy);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+/* Contenedores con efecto glass mejorado */
+.consultation-container,
+.selection-container,
+.calendar-container,
+.hours-container,
+.scheduling-form {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: var(--shadow-heavy);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 25px;
+    padding: 30px;
+}
+
+.consultation-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+}
+
+/* Títulos de sección con mejor contraste */
+.section-title {
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+/* Información del paciente mejorada */
+.patient-info {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: var(--shadow-light);
+}
+
+.patient-info .form-control-plaintext {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+/* Tablas mejoradas */
+.table-responsive {
+    max-height: 500px;
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+}
+
+.table {
+    background: var(--surface-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 15px;
+}
+
+.table tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Logo mejorado */
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo i {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Celdas de hora mejoradas */
+.hour-cell {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    border: 2px solid transparent;
+}
+
+.hour-cell:hover {
+    background-color: #e3f2fd;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
+
+.hour-cell.occupied {
+    background: linear-gradient(135deg, #ffcdd2, #ef9a9a);
+    color: var(--text-primary);
+    border-color: var(--danger-color);
+}
+
+.hour-cell.available {
+    background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+    color: var(--text-primary);
+    border-color: var(--success-color);
+}
+
+/* Autocomplete mejorado */
+.autocomplete {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    background: var(--surface-color);
+    box-shadow: var(--shadow-medium);
+}
+
+.autocomplete-items div {
+    padding: 12px 15px;
+    cursor: pointer;
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+.autocomplete-items div:hover {
+    background-color: #e3f2fd;
+}
+
+.autocomplete-active {
+    background-color: var(--primary-color) !important;
+    color: white;
+}
+
+/* CHECKBOXES MEJORADOS CON ALTO CONTRASTE */
+.checkbox-section {
+    background: linear-gradient(135deg, #f5f5f5, #eeeeee);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 2px solid var(--border-color);
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: var(--surface-color);
+    border: 3px solid var(--border-color);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    margin-bottom: 0;
+    box-shadow: var(--shadow-light);
+}
+
+.form-check:hover {
+    border-color: var(--primary-color);
+    background-color: #e3f2fd;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.form-check-input {
+    width: 22px;
+    height: 22px;
+    margin-right: 12px;
+    margin-top: 0;
+    border: 3px solid var(--text-light);
+    background-color: var(--surface-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+}
+
+.form-check-input:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-check-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(21, 101, 192, 0.3);
+    outline: none;
+}
+
+.form-check-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+    font-size: 1rem;
+}
+
+.form-check-input:checked + .form-check-label {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Estilos para el agendador */
+.selection-container,
+.calendar-container,
+.hours-container,
+.scheduling-form {
+  padding: 30px;
+  margin-bottom: 25px;
+}
+
+/* Indicador de pasos mejorado */
+.steps-indicator {
+  margin-bottom: 40px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+  position: relative;
+}
+
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 25px;
+  right: -40px;
+  width: 40px;
+  height: 3px;
+  background-color: #dee2e6;
+}
+
+.step.active:not(:last-child)::after {
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #dee2e6, #adb5bd);
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+  font-size: 1.1rem;
+  border: 3px solid transparent;
+}
+
+.step.active .step-number {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  border-color: var(--primary-dark);
+  box-shadow: var(--shadow-light);
+}
+
+.step-label {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.step.active .step-label {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* Calendario mejorado */
+.calendar-day {
+  padding: 12px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+  text-align: center;
+  font-weight: 500;
+}
+
+.calendar-day:hover {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  transform: scale(1.05);
+}
+
+.calendar-day.selected {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  box-shadow: var(--shadow-light);
+}
+
+.calendar-day.today {
+  background: linear-gradient(135deg, #fff3e0, #ffcc80);
+  color: var(--text-primary);
+  font-weight: bold;
+  border: 2px solid var(--warning-color);
+}
+
+.calendar-day.past {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: #f5f5f5;
+}
+
+/* Horarios mejorados */
+.hour-block {
+  border: 3px solid #dee2e6;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  padding: 15px;
+  text-align: center;
+  font-weight: 500;
+  background: var(--surface-color);
+}
+
+.hour-block.available {
+  border-color: var(--success-color);
+  background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+  color: var(--text-primary);
+}
+
+.hour-block.available:hover {
+  background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+}
+
+.hour-block.booked {
+  border-color: var(--danger-color);
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  color: var(--text-primary);
+}
+
+/* Resultados de búsqueda */
+.search-results {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--surface-color);
+}
+
+/* Botones mejorados */
+.btn {
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 12px 24px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-light);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    border-color: var(--primary-dark);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #adb5bd);
+    border-color: #495057;
+    color: white;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success-color), #4caf50);
+    border-color: #1b5e20;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--danger-color), #f44336);
+    border-color: #b71c1c;
+}
+
+/* Formularios mejorados */
+.form-control, .form-select {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--surface-color);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(21, 101, 192, 0.1);
+    background: var(--surface-color);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #003c8f;
+    --text-primary: #000000;
+    --border-color: #000000;
+  }
+  
+  .form-check-input {
+    border-width: 3px;
+  }
+  
+  .btn {
+    border-width: 3px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-container {
+    margin: 40px 20px;
+    padding: 30px 20px;
+  }
+  
+  .consultation-container {
+    margin: 20px 15px;
+    padding: 20px 15px;
+  }
+  
+  .step {
+    margin: 0 10px;
+  }
+  
+  .step:not(:last-child)::after {
+    right: -20px;
+    width: 20px;
+  }
+  
+  .step-label {
+    font-size: 0.85rem;
+  }
+  
+  .checkbox-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+/* Animaciones sutiles */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-container,
+.consultation-container,
+.selection-container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Efectos de profundidad */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+/* Botones personalizados para consultas médicas */
+
+.btn-consultation {
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px; /* espacio uniforme entre ícono y texto */
+  min-width: unset;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* ícono dentro del botón */
+.btn-consultation i {
+  margin: 0; /* elimina márgenes de Bootstrap como me-1 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover */
+.btn-consultation:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1565c0, #1976d2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.4);
+  color: white;
+}
+
+/* Active */
+.btn-consultation:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Disabled */
+.btn-consultation:disabled {
+  background: linear-gradient(135deg, #9e9e9e, #bdbdbd);
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Ripple effect */
+.btn-consultation,
+.btn-consultation-circle,
+.btn-consultation-gradient {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-consultation:after,
+.btn-consultation-circle:after,
+.btn-consultation-gradient:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.btn-consultation:hover:not(:disabled):after,
+.btn-consultation-circle:hover:not(:disabled):after,
+.btn-consultation-gradient:hover:not(:disabled):after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn-consultation {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+    gap: 4px;
+  }
+}

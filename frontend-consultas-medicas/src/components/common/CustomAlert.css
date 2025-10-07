@@ -1,0 +1,146 @@
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 300px;
+  max-width: 500px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1060;
+  transform: translateX(400px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border-left: 4px solid;
+}
+
+.custom-alert.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.custom-alert.hide {
+  transform: translateX(400px);
+  opacity: 0;
+}
+
+.custom-alert.success {
+  border-left-color: #2e7d32;
+}
+
+.custom-alert.error {
+  border-left-color: #d32f2f;
+}
+
+.custom-alert.warning {
+  border-left-color: #ed6c02;
+}
+
+.custom-alert.info {
+  border-left-color: #0288d1;
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  gap: 12px;
+}
+
+.alert-content i:first-child {
+  font-size: 1.5rem;
+}
+
+.custom-alert.success .alert-content i:first-child {
+  color: #2e7d32;
+}
+
+.custom-alert.error .alert-content i:first-child {
+  color: #d32f2f;
+}
+
+.custom-alert.warning .alert-content i:first-child {
+  color: #ed6c02;
+}
+
+.custom-alert.info .alert-content i:first-child {
+  color: #0288d1;
+}
+
+.alert-message {
+  flex: 1;
+  font-weight: 500;
+  color: #333;
+}
+
+.alert-close {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.alert-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.alert-progress {
+  height: 3px;
+  background: #f0f0f0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: currentColor;
+  width: 100%;
+  animation: progress linear forwards;
+}
+
+.custom-alert.success .progress-bar {
+  background: #2e7d32;
+}
+
+.custom-alert.error .progress-bar {
+  background: #d32f2f;
+}
+
+.custom-alert.warning .progress-bar {
+  background: #ed6c02;
+}
+
+.custom-alert.info .progress-bar {
+  background: #0288d1;
+}
+
+@keyframes progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .custom-alert {
+    left: 20px;
+    right: 20px;
+    min-width: auto;
+    max-width: none;
+    transform: translateY(-100px);
+  }
+  
+  .custom-alert.show {
+    transform: translateY(0);
+  }
+  
+  .custom-alert.hide {
+    transform: translateY(-100px);
+  }
+}
